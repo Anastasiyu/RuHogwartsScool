@@ -2,17 +2,19 @@ package com.example.ruhogwartsschool.entity;
 
 import org.springframework.data.annotation.Id;
 
+
+
 import javax.persistence.*;
+import javax.persistence.Table;
+
+
 import java.util.Objects;
 @Entity
 @Table(name = "students")
 public class Student  {
-   // @ManyToOne
-  //  @JoinColumn(name = "faculty id")
-  //  private Student student;
-
 
     @javax.persistence.Id
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,6 +22,17 @@ public class Student  {
     private String name;
 
     private int age;
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
 
     public long getId() {
         return id;
